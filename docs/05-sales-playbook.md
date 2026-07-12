@@ -24,7 +24,7 @@ We never send "we build websites" spam. Every first touch references **their spe
 >
 > We build sites for [city] [niche]s — live in 7 days, no big agency price. Want me to send over a free mockup of what yours could look like?
 >
-> [Founder name] · [Agency] · [address] · reply "no thanks" and I won't email again
+> [Founder name] · Howdy Sites · [address] · reply "no thanks" and I won't email again
 
 ### Email #1 — outdated site
 

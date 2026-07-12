@@ -4,7 +4,7 @@ import "./globals.css";
 import SyncButton from "@/components/SyncButton";
 
 export const metadata: Metadata = {
-  title: "Agency HQ",
+  title: "Howdy Sites HQ",
   description: "Operations dashboard — the repo is the database",
 };
 
@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen">
         <div className="flex min-h-screen">
           <aside className="w-48 shrink-0 border-r border-[#1f2633] p-4 flex flex-col gap-1">
-            <div className="text-sm font-bold tracking-wide text-slate-100 mb-3">AGENCY HQ</div>
+            <div className="text-sm font-bold tracking-wide text-slate-100 mb-3">HOWDY SITES</div>
             {NAV.map(([href, label]) => (
               <Link
                 key={href}

@@ -1,15 +1,14 @@
-# Agency HQ
+# Howdy Sites — HQ
 
-**Working name: TBD** (repo can be renamed anytime — nothing depends on the name)
-
-A web design + marketing agency run by **Sebas, Michael, and Parker**. We find local businesses in **Houston, Dallas, and San Antonio** that have no website or a badly outdated one, and we sell them a modern site plus ongoing hosting/maintenance.
+**howdysites.com** — a web design + care-plan agency run by **Sebas, Michael, and Parker**. We find local businesses in **Houston, Dallas, and San Antonio** that have no website or a badly outdated one, and we sell them a modern site plus ongoing hosting/maintenance.
 
 This repo is the **single source of truth** for the whole operation:
 
 - The master business plan lives in `docs/`
 - Tweakable numbers (pricing, targets, cities, niches) live in `config/` — change the JSON, commit, everyone has the new model
 - Shared team memory (decisions, lead notes, session logs) lives in `memory/` and `data/`
-- The operations dashboard (to be built by Fable 5) lives in `dashboard/`
+- The operations dashboard lives in `dashboard/`
+- The public site (howdysites.com) will live in `site/` and auto-deploy from this repo on every push
 
 ## How this works for the team
 
@@ -21,8 +20,8 @@ This repo is the **single source of truth** for the whole operation:
 ## Quick start
 
 ```bash
-git clone https://github.com/sebsalass/agency-hq.git
-cd agency-hq
+git clone https://github.com/sebsalass/howdysites-hq.git
+cd howdysites-hq
 claude   # open in Claude Code — it reads CLAUDE.md automatically
 ```
 

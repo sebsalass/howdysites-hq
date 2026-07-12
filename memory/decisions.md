@@ -4,6 +4,13 @@ Every business decision, dated, with who made it and why. Newest first. This is 
 
 ---
 
+## 2026-07-12 — Agency named: Howdy Sites (Sebas)
+
+- Name: **Howdy Sites**, domain **howdysites.com** (Sebas registering). Chosen over CarbonDesignCo / EthosSites / LiveOakSites / BlueBonnetSites for the friendliest phone-and-email presence with our small-business customer. Note: howdydigital.com is an unrelated existing registrant — we deliberately avoided the "Howdy Digital" name.
+- Repo renamed `agency-hq` → `howdysites-hq` (GitHub redirects old clones automatically).
+- Public site plan: build in `site/` in this repo, auto-deploy to howdysites.com via Vercel's GitHub integration — every push to main goes live.
+- Decision: docs stay as markdown in `docs/` (readable in the dashboard's Playbooks page + Claude Code); we are NOT using GitHub's wiki feature — it's a separate repo that would split the brain.
+
 ## 2026-07-12 — Repo founded (Sebas)
 
 - Business: web design + care-plan agency targeting Houston / Dallas / San Antonio businesses with missing or outdated websites.

@@ -12,7 +12,7 @@ export function draftEmail(lead: Lead, founder: string): { subject: string; body
 We build sites for ${cap(lead.city)} ${lead.niche} businesses — live in 7 days, no big agency price. Want me to send over a free mockup of what yours could look like?
 
 ${founder}
-[AGENCY NAME] · [PHYSICAL ADDRESS]
+Howdy Sites · [PHYSICAL ADDRESS]
 Reply "no thanks" and I won't email again.`,
     };
   }
@@ -23,7 +23,7 @@ Reply "no thanks" and I won't email again.`,
 We rebuild sites for ${cap(lead.city)} ${lead.niche} businesses — live in 7 days, and we handle everything after. Want a free mockup of the new version?
 
 ${founder}
-[AGENCY NAME] · [PHYSICAL ADDRESS]
+Howdy Sites · [PHYSICAL ADDRESS]
 Reply "no thanks" and I won't email again.`,
   };
 }
