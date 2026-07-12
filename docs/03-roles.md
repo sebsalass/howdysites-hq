@@ -36,5 +36,5 @@ Three founders, three lanes. Everyone can do everything in a pinch (the playbook
 Fill these in — the dashboard's "team" page and Claude sessions use them:
 
 - **Sebas** — GitHub: `sebsalass` — strengths: AI tooling, Claude Code, systems
-- **Michael** — GitHub: `TBD` — strengths: TBD
-- **Parker** — GitHub: `TBD` — strengths: TBD
+- **Michael** — GitHub: `Smokeythepig` — strengths: TBD
+- **Parker** — GitHub: `p-hibby` — strengths: TBD
