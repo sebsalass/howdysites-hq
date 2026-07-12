@@ -1,7 +1,8 @@
 "use client";
 import { use, useEffect, useState } from "react";
 import type { Lead } from "@/lib/data";
-import { draftEmail, draftMockupBrief } from "@/lib/templates";
+import { draftEmail, draftMockupBrief, draftMockupEmail } from "@/lib/templates";
+import QrCode from "@/components/QrCode";
 import { opportunities, type Pricing } from "@/lib/opportunities";
 
 export default function LeadDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -119,6 +120,17 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <button className="btn" onClick={sendToEmergent} title="Copies the mockup brief, then opens Emergent — paste it there to build a hosted demo">
             Build demo in Emergent
           </button>
+          {lead.demo_url && (
+            <button
+              className="btn"
+              onClick={() => {
+                const e = draftMockupEmail(lead, cap(by));
+                copy(`Subject: ${e.subject}\n\n${e.body}`);
+              }}
+            >
+              Draft mockup email
+            </button>
+          )}
           {lead.status !== "closed-won" && (
             <button className="btn btn-primary" onClick={markClient}>
               Mark closed-won
@@ -144,6 +156,7 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <button className="btn" onClick={saveLinks}>
             Save links
           </button>
+          {lead.demo_url && <QrCode url={lead.demo_url} filename={`${lead.id}-demo-qr.png`} />}
         </div>
       </div>
 

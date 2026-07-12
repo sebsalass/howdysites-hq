@@ -20,3 +20,7 @@ Running log of who did what. Append at the end of every work session, newest fir
 - Added to the dashboard: Google Business + demo-site link fields, Opportunities panel (pitch suggestions computed from lead data + pricing.json), and the "Build demo in Emergent" button (Emergent = pre-sale demo factory, documented in delivery playbook).
 - Built the public site v1 in `site/` — single static HTML, shop-sign design, real pricing, free-mockup CTA, no fabricated content. Deploy plan: Cloudflare Pages connected to this private repo, root dir `site/`, auto-deploy on push.
 - Before launch: buy domain, create howdy@howdysites.com mailbox, replace physical-address placeholder in footer + email templates (needs LLC address).
+
+## 2026-07-12 — Sebas (via Fable 5)
+
+- Built the Mockup pipeline page in the dashboard: paste a Google Business/Maps link → lead auto-created (name parsed from the URL) + Emergent brief copied + Emergent opened → paste back the demo URL → branded QR code (PNG download) + "built this for you" client email draft generated. Same QR + email button added to lead detail for any lead with a demo. Sales playbook Email #2 updated to use it.

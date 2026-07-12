@@ -10,7 +10,7 @@ We never send "we build websites" spam. Every first touch references **their spe
 
 1. **Day 0 — Email #1 (the audit):** 3 sentences. What we noticed, what it's costing them, one question.
 2. **Day 2 — Call:** ask for the owner, 30-second version of the email. Goal is not to close — it's to get permission to send the mockup.
-3. **Day 4 — Email #2 (the mockup):** screenshot/link of THEIR new homepage demo. "Built this for you — want the rest?"
+3. **Day 4 — Email #2 (the mockup):** a LIVE link to their demo homepage (built via the dashboard's Mockup pipeline: paste their Google Business link, build in Emergent, save the demo URL — the page generates this email and a QR code). "Built this for you — want the rest?" The QR version of the demo link goes on printed one-pagers and door hangers for in-person visits.
 4. **Day 8 — Email #3 (the breakup):** "Closing your file — should I?" (breakup emails get the most replies)
 5. Reply at any point → book a 15-minute call → close on the call.
 

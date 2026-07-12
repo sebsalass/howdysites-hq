@@ -28,6 +28,25 @@ Reply "no thanks" and I won't email again.`,
   };
 }
 
+// Email #2 in the sales sequence — sent once the Emergent demo is live.
+export function draftMockupEmail(lead: Lead, founder: string): { subject: string; body: string } {
+  const name = lead.owner_name || "there";
+  return {
+    subject: `built this for you, ${lead.business}`,
+    body: `Hi ${name} — I went ahead and built a first draft of what a new ${lead.business} website could look like. It's live right here:
+
+${lead.demo_url || "[DEMO URL]"}
+
+Take a look on your phone — that's where your customers are. If you like where it's headed, the full site can be live in 7 days, and this draft stays yours either way.
+
+Want me to finish it?
+
+${founder}
+Howdy Sites · [PHYSICAL ADDRESS]
+Reply "no thanks" and I won't email again.`,
+  };
+}
+
 export function draftMockupBrief(lead: Lead): string {
   return `MOCKUP BRIEF — ${lead.business}
 City / niche: ${cap(lead.city)} / ${lead.niche}
