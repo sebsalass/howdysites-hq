@@ -26,13 +26,15 @@ cd agency-hq
 claude   # open in Claude Code — it reads CLAUDE.md automatically
 ```
 
-Once the dashboard is built:
+Then run the dashboard (each founder runs their own local copy — it reads and writes this repo's files, so after a `git pull` everyone sees the identical pipeline):
 
 ```bash
 cd dashboard
-npm install
-npm run dev   # opens the ops dashboard at localhost:3000
+npm install    # first time only
+npm run dev    # ops dashboard at http://localhost:3000
 ```
+
+Work leads → hit the **Sync** button in the dashboard header (it commits `data/`, `memory/`, `config/` and pushes) → teammates pull or hit Sync and they're current.
 
 ## Repo map
 
