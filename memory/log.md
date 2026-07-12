@@ -13,3 +13,10 @@ Running log of who did what. Append at the end of every work session, newest fir
 
 - Built the dashboard (spec steps 1–6): Overview metrics, Pipeline kanban with drag + filters, Lead detail with touch log and outreach/mockup drafting, Clients MRR table, CSV/JSON lead importer with dedupe + do-not-contact check, Money model calculator (reads/writes pricing.json), in-app Playbooks reader, Settings JSON editors, and a git Sync button. Verified with a clean `npm run build` plus live API smoke tests (import, status move, touch logging), then removed the test lead.
 - Still pending from the spec: `scripts/scrape.ts` + `scripts/audit.ts` (need a Google Places API key first — see .env.example).
+
+## 2026-07-12 — Sebas (via Fable 5)
+
+- Named the agency **Howdy Sites** (howdysites.com, buying via Cloudflare); repo renamed to howdysites-hq; name swept through docs, templates, dashboard branding.
+- Added to the dashboard: Google Business + demo-site link fields, Opportunities panel (pitch suggestions computed from lead data + pricing.json), and the "Build demo in Emergent" button (Emergent = pre-sale demo factory, documented in delivery playbook).
+- Built the public site v1 in `site/` — single static HTML, shop-sign design, real pricing, free-mockup CTA, no fabricated content. Deploy plan: Cloudflare Pages connected to this private repo, root dir `site/`, auto-deploy on push.
+- Before launch: buy domain, create howdy@howdysites.com mailbox, replace physical-address placeholder in footer + email templates (needs LLC address).
