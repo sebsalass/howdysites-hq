@@ -1,0 +1,55 @@
+{
+  "$comment": "Canonical pricing + business model numbers. The dashboard and docs derive from this file. Tweak here, commit, push.",
+  "currency": "USD",
+  "tiers": {
+    "starter": {
+      "label": "Starter",
+      "build_fee": 750,
+      "care_monthly": 49,
+      "pages": 3,
+      "features": ["mobile-first design", "contact form", "google business link-up", "ssl + hosting"],
+      "edit_sla_days": 7
+    },
+    "standard": {
+      "label": "Standard",
+      "build_fee": 1500,
+      "care_monthly": 99,
+      "pages": 7,
+      "features": ["everything in starter", "photo gallery", "reviews section", "basic on-page seo", "2 edit rounds per month"],
+      "edit_sla_days": 2
+    },
+    "pro": {
+      "label": "Pro",
+      "build_fee": 3000,
+      "care_monthly": 199,
+      "pages": 12,
+      "features": ["everything in standard", "booking or quote forms", "blog setup", "priority same-day edits"],
+      "edit_sla_days": 0
+    }
+  },
+  "payment_terms": {
+    "deposit_pct": 50,
+    "upfront_discount_pct": 5,
+    "care_billing": "monthly-card-stripe",
+    "care_cancel": "anytime"
+  },
+  "expansion": {
+    "gbp_optimization_onetime": 250,
+    "review_gen_monthly": 49,
+    "local_seo_monthly": 299,
+    "extra_page": 150
+  },
+  "funnel_assumptions": {
+    "$comment": "v1 guesses - dashboard replaces these with measured actuals",
+    "contactable_rate": 0.8,
+    "reply_rate": 0.1,
+    "reply_to_demo_rate": 0.5,
+    "demo_to_close_rate": 0.35
+  },
+  "costs": {
+    "hosting_per_client_monthly": 8,
+    "build_ai_cost_per_site": 20,
+    "outreach_tooling_monthly": 60,
+    "places_api_monthly_budget": 100
+  }
+}

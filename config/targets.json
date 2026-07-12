@@ -1,0 +1,32 @@
+{
+  "$comment": "Where we hunt and how hard. Dashboard quotas and the scraper read this.",
+  "cities": [
+    { "id": "houston", "label": "Houston", "active": true },
+    { "id": "dallas", "label": "Dallas", "active": true },
+    { "id": "san-antonio", "label": "San Antonio", "active": true },
+    { "id": "austin", "label": "Austin", "active": false },
+    { "id": "fort-worth", "label": "Fort Worth", "active": false }
+  ],
+  "niches": [
+    { "id": "hvac", "label": "HVAC", "priority": 1, "avg_ticket": "high" },
+    { "id": "roofing", "label": "Roofing", "priority": 1, "avg_ticket": "high" },
+    { "id": "landscaping", "label": "Landscaping / Lawn Care", "priority": 2, "avg_ticket": "medium" },
+    { "id": "plumbing", "label": "Plumbing", "priority": 1, "avg_ticket": "high" },
+    { "id": "auto-detailing", "label": "Auto Detailing", "priority": 2, "avg_ticket": "medium" },
+    { "id": "cleaning", "label": "Cleaning Services", "priority": 2, "avg_ticket": "medium" },
+    { "id": "restaurants", "label": "Restaurants / Taquerias", "priority": 3, "avg_ticket": "low" },
+    { "id": "barbershops", "label": "Barbershops / Salons", "priority": 3, "avg_ticket": "low" }
+  ],
+  "lead_quality": {
+    "min_audit_score": 60,
+    "min_reviews": 10,
+    "min_rating": 3.8
+  },
+  "weekly_quotas": {
+    "new_leads": 100,
+    "outreach_touches": 200,
+    "demos_sent": 5,
+    "closes": 2
+  },
+  "phase": 0
+}
