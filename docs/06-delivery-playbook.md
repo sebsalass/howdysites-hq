@@ -13,6 +13,15 @@ A tier's page count and features are defined in `config/pricing.json` — nothin
 - **Repo per client** under the agency GitHub org, named `client-<slug>`. Site content (hours, services, photos) in a structured data file so edits are trivial.
 - **Claude Code builds it.** The intake form (below) becomes the prompt. A founder art-directs and QAs; the AI does the labor.
 
+## Pre-sale demos: Emergent (app.emergent.sh)
+
+The mockup that closes deals gets built on **Emergent** — describe the site in natural language and it builds AND hosts it, so the prospect gets a clickable live link, not a screenshot. Workflow, wired into the dashboard:
+
+1. On the lead's detail page, click **"Build demo in Emergent"** — it copies the lead's mockup brief and opens Emergent.
+2. Paste the brief, let Emergent generate the demo homepage, and copy its hosted URL.
+3. Paste that URL into the lead's **Demo site** field (Links card) — Sales sends it in Email #2.
+4. If the deal closes, the real production build still follows this playbook (our stack, our repo, our hosting) — Emergent is for pre-sale demos; Claude Code is for deliverables. Free tier is ~10 credits/mo; upgrade only when demo volume demands it.
+
 ## Day-by-day
 
 | Day | What happens |

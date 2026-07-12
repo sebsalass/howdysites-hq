@@ -44,6 +44,7 @@ export async function POST(req: NextRequest) {
       owner_name: str(r.owner_name),
       contact_source: str(r.contact_source),
       website: str(r.website) || null,
+      gbp_url: str(r.gbp_url ?? r.google_business ?? r.maps_url),
       audit: {
         score: num(r.audit_score ?? (r.audit as Record<string, unknown>)?.score) ?? 0,
         problems: parseProblems(r),

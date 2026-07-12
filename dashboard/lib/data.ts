@@ -27,6 +27,8 @@ export type Lead = {
   owner_name?: string;
   contact_source?: string;
   website?: string | null;
+  gbp_url?: string;
+  demo_url?: string;
   audit?: {
     score: number;
     problems: string[];
