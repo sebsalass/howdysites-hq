@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import StepTracker from "@/components/StepTracker";
-import { stepState } from "@/lib/steps";
+import { stepState, displayName } from "@/lib/steps";
 import type { Lead } from "@/lib/data";
 
 const COLUMNS = ["new", "contacted", "replied", "demo-sent", "negotiating", "closed-won", "closed-lost"];
-const FOUNDERS = ["sebas", "michael", "parker"];
+const FOUNDERS = ["sebastian", "michael", "parker"];
 
 export default function Pipeline() {
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -73,7 +73,7 @@ export default function Pipeline() {
           >
             <option value="">no advisor</option>
             {FOUNDERS.map((f) => (
-              <option key={f}>{f}</option>
+              <option key={f} value={f}>{displayName(f)}</option>
             ))}
           </select>
           <select
@@ -112,7 +112,7 @@ export default function Pipeline() {
           <select value={who} onChange={(e) => setWho(e.target.value)}>
             <option value="">all advisors</option>
             {FOUNDERS.map((f) => (
-              <option key={f}>{f}</option>
+              <option key={f} value={f}>{displayName(f)}</option>
             ))}
           </select>
         )}
@@ -153,7 +153,7 @@ export default function Pipeline() {
             return (
               <div key={f || "unassigned"}>
                 <div className="mb-2 flex items-baseline justify-between">
-                  <span className="text-sm font-bold capitalize text-slate-100">{f || "Unassigned"}</span>
+                  <span className="text-sm font-bold capitalize text-slate-100">{displayName(f) || "Unassigned"}</span>
                   <span className="text-xs text-slate-500">
                     {active.length} active · {cards.length} total
                   </span>

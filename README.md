@@ -1,6 +1,6 @@
 # Howdy Sites — HQ
 
-**howdysites.com** — a web design + care-plan agency run by **Sebas, Michael, and Parker**. We find local businesses in **Houston, Dallas, and San Antonio** that have no website or a badly outdated one, and we sell them a modern site plus ongoing hosting/maintenance.
+**howdysites.com** — a web design + care-plan agency run by **Sebastian, Michael, and Parker**. We find local businesses in **Houston, Dallas, and San Antonio** that have no website or a badly outdated one, and we sell them a modern site plus ongoing hosting/maintenance.
 
 This repo is the **single source of truth** for the whole operation:
 
@@ -41,7 +41,7 @@ Work leads → hit the **Sync** button in the dashboard header (it commits `data
 |---|---|
 | `docs/01-vision.md` | Why this business, the opportunity, the goal |
 | `docs/02-business-model.md` | Pricing tiers, revenue math, unit economics |
-| `docs/03-roles.md` | Who does what — Sebas / Michael / Parker |
+| `docs/03-roles.md` | Who does what — Sebastian / Michael / Parker |
 | `docs/04-lead-gen-playbook.md` | How we find businesses without (good) websites |
 | `docs/05-sales-playbook.md` | Outreach scripts, objection handling, closing |
 | `docs/06-delivery-playbook.md` | How we build + launch a client site fast |

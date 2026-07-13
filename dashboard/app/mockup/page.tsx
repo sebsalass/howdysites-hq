@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Lead } from "@/lib/data";
 import { draftMockupBrief, draftMockupEmail } from "@/lib/templates";
 import QrCode from "@/components/QrCode";
+import { displayName } from "@/lib/steps";
 
 const CITIES = ["houston", "dallas", "san-antonio"];
 const NICHES = ["hvac", "roofing", "plumbing", "landscaping", "auto-detailing", "cleaning", "restaurants", "barbershops", "other"];
@@ -16,7 +17,7 @@ export default function MockupPipeline() {
   const [business, setBusiness] = useState("");
   const [city, setCity] = useState("houston");
   const [niche, setNiche] = useState("hvac");
-  const [by, setBy] = useState("sebas");
+  const [by, setBy] = useState("sebastian");
   const [lead, setLead] = useState<Lead | null>(null);
   const [demoUrl, setDemoUrl] = useState("");
   const [copied, setCopied] = useState("");
@@ -117,7 +118,7 @@ export default function MockupPipeline() {
                 {NICHES.map((n) => <option key={n}>{n}</option>)}
               </select>
               <select value={by} onChange={(e) => setBy(e.target.value)}>
-                {["sebas", "michael", "parker"].map((f) => <option key={f}>{f}</option>)}
+                {["sebastian", "michael", "parker"].map((f) => <option key={f} value={f}>{displayName(f)}</option>)}
               </select>
             </div>
             <button className="btn btn-primary" onClick={createAndBrief}>

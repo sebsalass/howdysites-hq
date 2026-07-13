@@ -1,6 +1,6 @@
 import type { Lead } from "./data";
 
-// The six-step mockup process (Sebas's sketch, 7.12):
+// The six-step mockup process (Sebastian's sketch, 7.12):
 // advisor -> google business -> description -> emergent -> qr -> email.
 // Each step is DERIVED from lead data, so the tracker is always honest —
 // nobody has to remember to tick boxes.
@@ -44,4 +44,10 @@ export function stepState(lead: StepLead) {
   const steps = MOCKUP_STEPS.map((s) => ({ ...s, done: stepDone(lead, s.key) }));
   const current = steps.find((s) => !s.done);
   return { steps, current: current?.label ?? "Complete", doneCount: steps.filter((s) => s.done).length };
+}
+
+// Display helper: stored ids are lowercase ("sebastian"); screens always show "Sebastian".
+export function displayName(s?: string | null): string {
+  if (!s) return "";
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }

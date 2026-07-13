@@ -4,7 +4,7 @@ Three founders, three lanes. Everyone can do everything in a pinch (the playbook
 
 > Lane assignments below are a **starting proposal** — swap names as you figure out who's actually good at what. The lanes themselves shouldn't change.
 
-## Lane 1 — Pipeline (lead gen + data) — **Owner: Sebas**
+## Lane 1 — Pipeline (lead gen + data) — **Owner: Sebastian**
 
 - Runs the scraping/audit workflow weekly per `docs/04-lead-gen-playbook.md`
 - Keeps `data/leads/` clean: fresh leads in, dead leads marked, no duplicates
@@ -35,6 +35,6 @@ Three founders, three lanes. Everyone can do everything in a pinch (the playbook
 
 Fill these in — the dashboard's "team" page and Claude sessions use them:
 
-- **Sebas** — GitHub: `sebsalass` — strengths: AI tooling, Claude Code, systems
+- **Sebastian** — GitHub: `sebsalass` — strengths: AI tooling, Claude Code, systems
 - **Michael** — GitHub: `Smokeythepig` — strengths: TBD
 - **Parker** — GitHub: `p-hibby` — strengths: TBD

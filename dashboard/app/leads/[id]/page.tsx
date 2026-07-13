@@ -4,13 +4,14 @@ import type { Lead } from "@/lib/data";
 import { draftEmail, draftMockupBrief, draftMockupEmail } from "@/lib/templates";
 import QrCode from "@/components/QrCode";
 import StepTracker from "@/components/StepTracker";
+import { displayName } from "@/lib/steps";
 import { opportunities, type Pricing } from "@/lib/opportunities";
 
 export default function LeadDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const [lead, setLead] = useState<Lead | null>(null);
   const [pricing, setPricing] = useState<Pricing | null>(null);
-  const [by, setBy] = useState("sebas");
+  const [by, setBy] = useState("sebastian");
   const [channel, setChannel] = useState("email");
   const [note, setNote] = useState("");
   const [draft, setDraft] = useState("");
@@ -88,7 +89,7 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <h1 className="text-xl font-bold text-slate-100">{lead.business}</h1>
           <p className="text-sm text-slate-500">
             {lead.city} · {lead.niche} · status <span className="text-slate-300">{lead.status}</span>
-            {lead.assigned_to && <> · advisor: {lead.assigned_to}</>}
+            {lead.assigned_to && <> · advisor: {displayName(lead.assigned_to)}</>}
           </p>
           <div className="mt-3">
             <StepTracker lead={lead} />
@@ -192,8 +193,8 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <h2 className="mb-2 text-sm font-semibold text-slate-300">Log a touch</h2>
           <div className="flex flex-wrap gap-2">
             <select value={by} onChange={(e) => setBy(e.target.value)}>
-              {["sebas", "michael", "parker"].map((f) => (
-                <option key={f}>{f}</option>
+              {["sebastian", "michael", "parker"].map((f) => (
+                <option key={f} value={f}>{displayName(f)}</option>
               ))}
             </select>
             <select value={channel} onChange={(e) => setChannel(e.target.value)}>
@@ -223,7 +224,7 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
               {[...lead.touches].reverse().map((t, i) => (
                 <li key={i} className="flex gap-2">
                   <span className="text-slate-500 tabular-nums">{t.date}</span>
-                  <span className="text-slate-400">{t.by}</span>
+                  <span className="text-slate-400">{displayName(t.by)}</span>
                   <span className="text-slate-600">{t.channel}</span>
                   <span className="text-slate-300">{t.note}</span>
                 </li>
