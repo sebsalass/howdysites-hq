@@ -27,7 +27,7 @@ claude   # open in Claude Code — it reads CLAUDE.md automatically
 
 Then boot the dashboard — **double-click `Howdy HQ.command`** in Finder. It pulls the latest team data, installs anything missing (first run only), starts the app, and opens http://localhost:3000. Keep the window open while you work.
 
-> First-time setup on a new machine: install [Node.js LTS](https://nodejs.org), clone this repo, double-click the launcher. If macOS blocks the first double-click: right-click the file, then Open. (Terminal equivalent: `cd dashboard && npm install && npm run dev`.)
+> First-time setup on a new machine: install Node.js — either the [LTS installer](https://nodejs.org) (easiest) or via nvm (`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash`, then `nvm install 24`) — clone this repo, double-click the launcher (it finds nvm-installed Node automatically). If macOS blocks the first double-click: right-click the file, then Open. (Terminal equivalent: `cd dashboard && npm install && npm run dev`.)
 
 Work leads → hit the **Sync** button in the dashboard header (it commits `data/`, `memory/`, `config/` and pushes) → teammates pull (the launcher does it on every boot) and they're current.
 

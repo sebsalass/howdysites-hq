@@ -6,9 +6,19 @@ cd "$(dirname "$0")"
 
 echo "=== Howdy Sites HQ ==="
 
-# Node check — point people at the installer instead of failing cryptically.
+# Finder-launched scripts don't load your shell profile, so nvm installs are
+# invisible here unless we source nvm ourselves.
+if ! command -v node >/dev/null 2>&1 && [ -s "$HOME/.nvm/nvm.sh" ]; then
+  . "$HOME/.nvm/nvm.sh"
+fi
+
+# Node check — point people at the installers instead of failing cryptically.
 if ! command -v node >/dev/null 2>&1; then
-  echo "Node.js isn't installed. Grab the LTS installer at https://nodejs.org, run it, then double-click this again."
+  echo "Node.js isn't installed. Two ways to fix that:"
+  echo "  1) Easiest: download the LTS installer at https://nodejs.org and run it."
+  echo "  2) Terminal: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.5/install.sh | bash"
+  echo "     then: \\. \"\$HOME/.nvm/nvm.sh\" && nvm install 24"
+  echo "Then double-click this launcher again."
   read -n 1 -s -r -p "Press any key to close."
   exit 1
 fi
