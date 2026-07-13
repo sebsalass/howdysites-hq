@@ -19,6 +19,8 @@ This repo is the **single source of truth** for the whole operation:
 
 ## Quick start
 
+> New teammate? Follow **[SETUP.md](SETUP.md)** — 10 minutes, no terminal needed after day one.
+
 ```bash
 git clone https://github.com/sebsalass/howdysites-hq.git
 cd howdysites-hq
