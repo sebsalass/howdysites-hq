@@ -57,9 +57,18 @@ export default function Pipeline() {
         </div>
         <div className="mt-1 flex justify-between text-xs text-slate-500">
           <span>
-            {l.city} · {l.niche}
+            {l.city}{l.zip ? ` ${l.zip}` : ""} · {l.niche}
           </span>
-          <span title="audit score">{l.audit?.score ?? "–"}</span>
+          <span
+            title="website report score — 0 is no site (best lead), 100 is a great site"
+            className={
+              l.audit == null ? "" :
+              l.audit.web_score < 40 ? "font-semibold text-red-400" :
+              l.audit.web_score < 70 ? "text-amber-400" : "text-emerald-500"
+            }
+          >
+            {l.audit ? `web ${l.audit.web_score}` : "–"}
+          </span>
         </div>
         <div className="mt-1.5">
           <StepTracker lead={l} compact />

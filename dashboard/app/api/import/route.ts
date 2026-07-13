@@ -38,6 +38,7 @@ export async function POST(req: NextRequest) {
       business,
       city,
       niche,
+      zip: str(r.zip),
       address: str(r.address),
       phone: str(r.phone),
       email: str(r.email),
@@ -46,8 +47,9 @@ export async function POST(req: NextRequest) {
       website: str(r.website) || null,
       gbp_url: str(r.gbp_url ?? r.google_business ?? r.maps_url),
       audit: {
-        score: num(r.audit_score ?? (r.audit as Record<string, unknown>)?.score) ?? 0,
+        web_score: num(r.web_score ?? (r.audit as Record<string, unknown>)?.web_score) ?? (str(r.website) ? 50 : 0),
         problems: parseProblems(r),
+        checks: typeof r.checks === "object" && r.checks !== null ? (r.checks as Record<string, boolean>) : undefined,
         reviews: num(r.reviews ?? (r.audit as Record<string, unknown>)?.reviews),
         rating: num(r.rating ?? (r.audit as Record<string, unknown>)?.rating),
         audited_at: today(),

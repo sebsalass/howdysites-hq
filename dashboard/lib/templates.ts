@@ -18,7 +18,7 @@ Reply "no thanks" and I won't email again.`,
   }
   return {
     subject: `${lead.website} on a phone`,
-    body: `Hi ${name} — checked out ${lead.website} and on a phone it ${problemPhrase(lead)}. Most of your customers are finding you on their phone, so that's real money walking.
+    body: `Hi ${name} — we ran ${lead.website} through our website check and it scored ${lead.audit?.web_score ?? "under 40"}/100 — on a phone it ${problemPhrase(lead)}. Most of your customers are finding you on their phone, so that's real money walking.
 
 We rebuild sites for ${cap(lead.city)} ${lead.niche} businesses — live in 7 days, and we handle everything after. Want a free mockup of the new version?
 

@@ -32,3 +32,7 @@ Running log of who did what. Append at the end of every work session, newest fir
 ## 2026-07-13 — Sebastian (via Fable 5)
 
 - howdysites.com purchased on Cloudflare. Wrote SETUP-DOMAIN.md — Michael's click-by-click guide to connect Cloudflare Pages to this repo (output dir `site`), attach the domain + www, and set up howdy@howdysites.com email routing. Roadmap updated.
+
+## 2026-07-13 — Sebastian (via Fable 5)
+
+- Built the ZIP-code lead database + Website Report Score (0-100, 100 = great site, 0 = no site; LOW = hot lead). New: scripts/scrape.mjs (Places API by zip — needs API key), scripts/audit.mjs (scores any business list against a 9-check rubric, no key needed), importer carries zip + score + report card, lead detail shows the full pass/fail report, outreach email now cites the score, and a new Territories page ranks zips by hot-lead count. lead_quality in targets.json flipped to max_web_score: 40. Verified end-to-end with test businesses (0 / 5 / 80 scored correctly), then removed test data.

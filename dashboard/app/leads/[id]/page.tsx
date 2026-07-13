@@ -104,16 +104,42 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <Row k="Website" v={lead.website || "none (jackpot)"} href={lead.website || undefined} />
           <Row k="Google Business" v={lead.gbp_url ? "open profile" : "not on file"} href={lead.gbp_url} />
           <Row k="Demo site" v={lead.demo_url ? "view demo" : "not built yet"} href={lead.demo_url} />
+          <Row k="ZIP" v={lead.zip} />
           <Row
-            k="Audit"
-            v={
-              lead.audit
-                ? `score ${lead.audit.score} · ${lead.audit.reviews ?? "?"} reviews at ${lead.audit.rating ?? "?"} stars · ${(lead.audit.problems || []).join(", ")}`
-                : "not audited"
-            }
+            k="Reviews"
+            v={lead.audit ? `${lead.audit.reviews ?? "?"} reviews at ${lead.audit.rating ?? "?"} stars` : "—"}
           />
           <Row k="Contact source" v={lead.contact_source} />
         </div>
+
+        {lead.audit && (
+          <div className="card p-4">
+            <div className="mb-2 flex items-baseline justify-between">
+              <h2 className="text-sm font-semibold text-slate-300">Website report</h2>
+              <span
+                className={`text-2xl font-bold tabular-nums ${
+                  lead.audit.web_score < 40 ? "text-red-400" : lead.audit.web_score < 70 ? "text-amber-400" : "text-emerald-400"
+                }`}
+              >
+                {lead.audit.web_score}/100
+              </span>
+            </div>
+            {lead.audit.checks ? (
+              <ul className="grid grid-cols-2 gap-x-4 text-xs">
+                {Object.entries(lead.audit.checks).map(([k, v]) => (
+                  <li key={k} className={`py-0.5 ${v ? "text-emerald-500" : "text-red-400"}`}>
+                    {v ? "PASS" : "FAIL"} <span className="text-slate-400">{k.replace(/_/g, " ")}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-xs text-slate-500">
+                {(lead.audit.problems || []).join(", ") || "No check breakdown on file — run scripts/audit.mjs for the full report card."}
+              </p>
+            )}
+            <p className="mt-2 text-[11px] text-slate-600">100 = great website. 0 = no website. Low score = hot lead — quote it in the outreach email.</p>
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-2">
           <button className="btn" onClick={() => copy(`Subject: ${email.subject}\n\n${email.body}`)}>

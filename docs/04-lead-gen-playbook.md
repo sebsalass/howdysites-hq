@@ -12,7 +12,7 @@ Quotas and target niches live in [`config/targets.json`](../config/targets.json)
 
 Primary source: **Google Places API** (official, legal, reliable — has a `website` field, which is exactly the signal we need).
 
-- Query pattern: `<niche> in <neighborhood>, <city>` — e.g. "HVAC repair in Pasadena, Houston". Iterate over neighborhoods to beat the 60-results-per-query cap.
+- Query pattern: `<niche> in <zip>` — we organize the whole database by **ZIP code** (`scripts/scrape.mjs "hvac" 77502 77506 --city=houston`). Iterate over zips to beat the 60-results-per-query cap, and the dashboard's Territories page shows which zips are richest in bad websites.
 - Secondary sources: Yelp Fusion API, Texas Secretary of State new-LLC filings (brand-new businesses rarely have sites yet), local chamber-of-commerce directories.
 - **Rules:** use official APIs where they exist, respect rate limits and robots.txt, only collect business (not personal) data that's already public. No scraping behind logins.
 
@@ -30,7 +30,7 @@ For each business, a script checks and scores:
 | No contact form / click-to-call | Losing customers |
 | PageSpeed score < 40 | Slow, likely old |
 
-Score 0–100 (100 = worst site = best lead). Anything above the threshold in `targets.json` becomes a lead.
+Every business gets a **Website Report Score, 0–100** (`scripts/audit.mjs`): **100 = great website, 0 = no website at all.** Rubric: loads over HTTPS (30) + valid SSL (15) + mobile viewport (15) + click-to-call/form (10) + fast (10) + title/description (5+5) + recent copyright (5) + not parked (5). Facebook-only = 10, dead site = 5. Anything **below** `lead_quality.max_web_score` in `targets.json` becomes a lead — and the score itself goes in the outreach email ("your site scored 22/100").
 
 ## Step 3 — Qualify
 

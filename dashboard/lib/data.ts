@@ -21,6 +21,7 @@ export type Lead = {
   business: string;
   city: string;
   niche: string;
+  zip?: string;
   address?: string;
   phone?: string;
   email?: string;
@@ -29,9 +30,12 @@ export type Lead = {
   website?: string | null;
   gbp_url?: string;
   demo_url?: string;
+  // web_score: 0-100 website quality. 100 = great site, 0 = no site at all.
+  // LOW scores are our best leads. checks = the report card behind the number.
   audit?: {
-    score: number;
+    web_score: number;
     problems: string[];
+    checks?: Record<string, boolean>;
     reviews?: number;
     rating?: number;
     audited_at?: string;

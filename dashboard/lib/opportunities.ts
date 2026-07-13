@@ -17,6 +17,7 @@ export type Opportunity = { title: string; detail: string; price: string; kind: 
 export function opportunities(lead: Lead, pricing: Pricing): Opportunity[] {
   const out: Opportunity[] = [];
   const problems = lead.audit?.problems || [];
+  const webScore = lead.audit?.web_score;
   const reviews = lead.audit?.reviews ?? 0;
   const rating = lead.audit?.rating ?? 0;
   const highTicket = ["hvac", "roofing", "plumbing"].includes(lead.niche);
@@ -36,7 +37,7 @@ export function opportunities(lead: Lead, pricing: Pricing): Opportunity[] {
     out.push({
       kind: "core",
       title: `Rebuild — pitch ${tier.label}`,
-      detail: `Existing site has problems (${problems.join(", ") || "outdated"}). Lead with the specific broken thing, not "modern design."`,
+      detail: `Their site scored ${webScore ?? "?"}/100 on our report (${problems.join(", ") || "outdated"}). Lead with the score and the specific broken thing, not "modern design."`,
       price: `$${tier.build_fee.toLocaleString()} + $${tier.care_monthly}/mo`,
     });
   }
