@@ -28,3 +28,7 @@ Running log of who did what. Append at the end of every work session, newest fir
 ## 2026-07-12 — Sebastian (via Fable 5)
 
 - Pipeline now tracks the six-step mockup process per client (Advisor → Google Business → Description → Emergent → QR → Email), derived automatically from lead data — dots on every kanban card, full tracker on lead detail. Added a "By advisor" view: one column per founder (plus Unassigned) showing each advisor's clients, their status, and what step each is on. Advisor can be reassigned straight from any card; the Mockup pipeline auto-assigns whoever ran it.
+
+## 2026-07-13 — Sebastian (via Fable 5)
+
+- howdysites.com purchased on Cloudflare. Wrote SETUP-DOMAIN.md — Michael's click-by-click guide to connect Cloudflare Pages to this repo (output dir `site`), attach the domain + www, and set up howdy@howdysites.com email routing. Roadmap updated.

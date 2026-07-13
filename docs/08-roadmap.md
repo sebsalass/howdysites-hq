@@ -4,7 +4,8 @@
 
 - [ ] All three founders clone the repo, open it in Claude Code, read the docs
 - [ ] Agree on lane assignments (`docs/03-roles.md`) and log it in `memory/decisions.md`
-- [x] Agency name: **Howdy Sites** (howdysites.com — registering now); repo renamed to howdysites-hq
+- [x] Agency name: **Howdy Sites**; howdysites.com BOUGHT on Cloudflare (7.12); repo renamed to howdysites-hq
+- [ ] Deploy site + email routing — Michael, follow `SETUP-DOMAIN.md`
 - [ ] Fable 5 builds dashboard steps 1–2 (kanban usable)
 - [ ] Set up: Google Places API key, outreach mailbox on a secondary domain (start warming it — takes ~2 weeks), Stripe account
 - [ ] Build OUR OWN site (we cannot sell websites without one) — it's also our portfolio piece #1
