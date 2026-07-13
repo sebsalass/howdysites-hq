@@ -3,6 +3,7 @@ import { use, useEffect, useState } from "react";
 import type { Lead } from "@/lib/data";
 import { draftEmail, draftMockupBrief, draftMockupEmail } from "@/lib/templates";
 import QrCode from "@/components/QrCode";
+import StepTracker from "@/components/StepTracker";
 import { opportunities, type Pricing } from "@/lib/opportunities";
 
 export default function LeadDetail({ params }: { params: Promise<{ id: string }> }) {
@@ -87,8 +88,11 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
           <h1 className="text-xl font-bold text-slate-100">{lead.business}</h1>
           <p className="text-sm text-slate-500">
             {lead.city} · {lead.niche} · status <span className="text-slate-300">{lead.status}</span>
-            {lead.assigned_to && <> · assigned to {lead.assigned_to}</>}
+            {lead.assigned_to && <> · advisor: {lead.assigned_to}</>}
           </p>
+          <div className="mt-3">
+            <StepTracker lead={lead} />
+          </div>
         </div>
 
         <div className="card p-4 text-sm">

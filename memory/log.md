@@ -24,3 +24,7 @@ Running log of who did what. Append at the end of every work session, newest fir
 ## 2026-07-12 — Sebas (via Fable 5)
 
 - Built the Mockup pipeline page in the dashboard: paste a Google Business/Maps link → lead auto-created (name parsed from the URL) + Emergent brief copied + Emergent opened → paste back the demo URL → branded QR code (PNG download) + "built this for you" client email draft generated. Same QR + email button added to lead detail for any lead with a demo. Sales playbook Email #2 updated to use it.
+
+## 2026-07-12 — Sebas (via Fable 5)
+
+- Pipeline now tracks the six-step mockup process per client (Advisor → Google Business → Description → Emergent → QR → Email), derived automatically from lead data — dots on every kanban card, full tracker on lead detail. Added a "By advisor" view: one column per founder (plus Unassigned) showing each advisor's clients, their status, and what step each is on. Advisor can be reassigned straight from any card; the Mockup pipeline auto-assigns whoever ran it.

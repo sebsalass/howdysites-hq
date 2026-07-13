@@ -51,6 +51,7 @@ export default function MockupPipeline() {
         city,
         niche,
         gbp_url: gbpUrl.trim() || undefined,
+        assigned_to: by,
         contact_source: "google-business-profile",
         website: null,
       }),
@@ -60,9 +61,14 @@ export default function MockupPipeline() {
       return;
     }
     const created: Lead = await res.json();
-    setLead(created);
     copy(draftMockupBrief(created), "brief");
     window.open("https://app.emergent.sh/home", "_blank");
+    const r2 = await fetch(`/api/leads/${created.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ touch: { by, channel: "note", note: "mockup brief drafted" } }),
+    });
+    setLead(r2.ok ? await r2.json() : created);
   }
 
   async function saveDemo() {
@@ -166,7 +172,18 @@ export default function MockupPipeline() {
             </h2>
             <textarea readOnly value={`Subject: ${email!.subject}\n\n${email!.body}`} rows={13} className="w-full font-mono text-xs" />
             <div className="flex flex-wrap items-center gap-2">
-              <button className="btn btn-primary" onClick={() => copy(`Subject: ${email!.subject}\n\n${email!.body}`, "email")}>
+              <button
+                className="btn btn-primary"
+                onClick={async () => {
+                  copy(`Subject: ${email!.subject}\n\n${email!.body}`, "email");
+                  const r = await fetch(`/api/leads/${lead!.id}`, {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ touch: { by, channel: "note", note: "mockup email drafted" } }),
+                  });
+                  if (r.ok) setLead(await r.json());
+                }}
+              >
                 Copy email
               </button>
               {lead.email && (
