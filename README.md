@@ -25,15 +25,11 @@ cd howdysites-hq
 claude   # open in Claude Code — it reads CLAUDE.md automatically
 ```
 
-Then run the dashboard (each founder runs their own local copy — it reads and writes this repo's files, so after a `git pull` everyone sees the identical pipeline):
+Then boot the dashboard — **double-click `Howdy HQ.command`** in Finder. It pulls the latest team data, installs anything missing (first run only), starts the app, and opens http://localhost:3000. Keep the window open while you work.
 
-```bash
-cd dashboard
-npm install    # first time only
-npm run dev    # ops dashboard at http://localhost:3000
-```
+> First-time setup on a new machine: install [Node.js LTS](https://nodejs.org), clone this repo, double-click the launcher. If macOS blocks the first double-click: right-click the file, then Open. (Terminal equivalent: `cd dashboard && npm install && npm run dev`.)
 
-Work leads → hit the **Sync** button in the dashboard header (it commits `data/`, `memory/`, `config/` and pushes) → teammates pull or hit Sync and they're current.
+Work leads → hit the **Sync** button in the dashboard header (it commits `data/`, `memory/`, `config/` and pushes) → teammates pull (the launcher does it on every boot) and they're current.
 
 ## Repo map
 
