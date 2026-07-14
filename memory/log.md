@@ -36,3 +36,8 @@ Running log of who did what. Append at the end of every work session, newest fir
 ## 2026-07-13 — Sebastian (via Fable 5)
 
 - Built the ZIP-code lead database + Website Report Score (0-100, 100 = great site, 0 = no site; LOW = hot lead). New: scripts/scrape.mjs (Places API by zip — needs API key), scripts/audit.mjs (scores any business list against a 9-check rubric, no key needed), importer carries zip + score + report card, lead detail shows the full pass/fail report, outreach email now cites the score, and a new Territories page ranks zips by hot-lead count. lead_quality in targets.json flipped to max_web_score: 40. Verified end-to-end with test businesses (0 / 5 / 80 scored correctly), then removed test data.
+
+## 2026-07-13 — Sebastian (via Fable 5)
+
+- Built the ZIP territory system. data/zips-tx.json = all 2,600 Texas ZIP centroids (GeoNames, CC BY 4.0). Territories page now: type a ZIP (e.g. 77494) + niche → "Work this ZIP" runs scrape → audit → import in one click (needs GOOGLE_PLACES_API_KEY in .env; shows manual commands until then) → recommends the next 5 nearest unexplored ZIPs → SVG map per metro (Houston 352 zips / Dallas / San Antonio) colored by status: explorable, queued, scraped, contacted, clients won, exhausted. Click any dot to load that ZIP. Status derives from lead files automatically; queue/exhausted are manual marks in data/territories.json.
+- LAST BLOCKER for the full one-click machine: Google Places API key → .env.
