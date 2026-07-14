@@ -30,15 +30,13 @@ const STATUS_LABELS: Record<string, string> = {
   clients: "clients won",
   exhausted: "exhausted",
 };
-const NICHES = ["hvac", "roofing", "plumbing", "landscaping", "auto-detailing", "cleaning", "restaurants", "barbershops"];
-
 export default function Territories() {
   const [data, setData] = useState<Data | null>(null);
   const [zip, setZip] = useState("");
-  const [niche, setNiche] = useState("hvac");
   const [metro, setMetro] = useState("houston");
   const [busy, setBusy] = useState(false);
-  const [result, setResult] = useState<{ kind: "ok" | "err"; text: string; manual?: string[] } | null>(null);
+  const [result, setResult] = useState<{ kind: "ok" | "err"; text: string; manual?: string[]; emailable?: string[] } | null>(null);
+  const [sendMsg, setSendMsg] = useState("");
 
   const load = useCallback((focus: string, m: string) => {
     fetch(`/api/territories?focus=${focus}&metro=${m}`)
@@ -63,19 +61,32 @@ export default function Territories() {
     const res = await fetch("/api/territories/scrape", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ zip, niche }),
+      body: JSON.stringify({ zip }),
     });
     const d = await res.json();
     setBusy(false);
     if (res.ok) {
       setResult({
         kind: "ok",
-        text: `ZIP ${d.zip} (${d.city}) worked for ${niche}: ${d.found} businesses found, ${d.added} imported as leads, ${d.hot} hot (score < 40).`,
+        text: `ZIP ${d.zip} (${d.city}): ${d.found} businesses found across all our niches, ${d.added} imported, ${d.hot} hot (score < 40), ${d.emailable?.length ?? 0} hot with an email address.`,
+        emailable: d.emailable,
       });
     } else {
       setResult({ kind: "err", text: d.error, manual: d.manual });
     }
     load(zip, metro);
+  }
+
+  async function sendIntros() {
+    if (!result?.emailable?.length) return;
+    setSendMsg("sending…");
+    const res = await fetch("/api/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ leadIds: result.emailable, kind: "audit", by: "sebastian" }),
+    });
+    const d = await res.json();
+    setSendMsg(res.ok ? `${d.sent} sent (${d.sentToday}/${d.dailyCap} used today)` : d.error);
   }
 
   async function mark(z: string, status: string) {
@@ -114,11 +125,6 @@ export default function Territories() {
             className="w-24 text-center font-mono"
             maxLength={5}
           />
-          <select value={niche} onChange={(e) => setNiche(e.target.value)}>
-            {NICHES.map((n) => (
-              <option key={n}>{n}</option>
-            ))}
-          </select>
           <button className="btn btn-primary" onClick={workZip} disabled={busy}>
             {busy ? "Working the ZIP… (scrape + audit, up to 2 min)" : "Work this ZIP"}
           </button>
@@ -137,9 +143,17 @@ export default function Territories() {
           </div>
         )}
         {result?.kind === "ok" && (
-          <p className="text-xs text-slate-500">
-            Leads are on the <Link href="/pipeline" className="text-sky-400">Pipeline</Link>, worst websites first. Hit Sync to share.
-          </p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="text-xs text-slate-500">
+              Leads are on the <Link href="/pipeline" className="text-sky-400">Pipeline</Link>, worst websites first. Hit Sync to share.
+            </p>
+            {(result.emailable?.length ?? 0) > 0 && (
+              <button className="btn btn-primary" onClick={sendIntros}>
+                Send intro email to {result.emailable!.length} hot leads
+              </button>
+            )}
+            {sendMsg && <span className="text-xs text-slate-300">{sendMsg}</span>}
+          </div>
         )}
       </section>
 

@@ -15,10 +15,11 @@ const exec = promisify(execFile);
 // scrape the ZIP (Places API) -> audit every website 0-100 -> import as leads
 // -> mark the territory. Returns counts. Fails with instructions if no API key.
 export async function POST(req: NextRequest) {
-  const { zip, niche } = await req.json();
+  const body = await req.json();
+  const zip = body.zip;
+  const niche = body.niche || "all";
   const zi = zipInfo(String(zip));
   if (!zi) return NextResponse.json({ error: `unknown TX zip: ${zip}` }, { status: 400 });
-  if (!niche) return NextResponse.json({ error: "niche required" }, { status: 400 });
   const city = metroOf(zi) || "";
 
   let tmp = "";
@@ -56,6 +57,7 @@ export async function POST(req: NextRequest) {
     const dnc = new Set(readJson<{ list: string[] }>("data/do-not-contact.json").list);
     let added = 0,
       skipped = 0;
+    const addedLeads: Lead[] = [];
     for (const r of audited) {
       const business = String(r.business || "").trim();
       if (!business) {
@@ -71,7 +73,7 @@ export async function POST(req: NextRequest) {
         id,
         business,
         city: city || "tx",
-        niche: String(r.niche || niche),
+        niche: String(r.niche || "local business"),
         zip: zi.zip,
         address: str(r.address),
         phone: str(r.phone),
@@ -91,7 +93,9 @@ export async function POST(req: NextRequest) {
         touches: [],
         client: null,
       };
+      lead.email = str(r.email);
       writeLead(lead);
+      addedLeads.push(lead);
       existing.add(id);
       added++;
     }
@@ -109,7 +113,8 @@ export async function POST(req: NextRequest) {
     appendLog(`worked ZIP ${zi.zip} (${zi.city}) for ${niche}: ${candidates.length} found, ${added} imported, ${skipped} skipped`);
 
     const hot = audited.filter((r) => Number(r.web_score ?? 100) < 40).length;
-    return NextResponse.json({ ok: true, zip: zi.zip, city: zi.city, found: candidates.length, added, skipped, hot });
+    const emailable = addedLeads.filter((l) => l.email && (l.audit?.web_score ?? 100) < 40).map((l) => l.id);
+    return NextResponse.json({ ok: true, zip: zi.zip, city: zi.city, found: candidates.length, added, skipped, hot, emailable });
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
     if (msg === "NO_KEY") {

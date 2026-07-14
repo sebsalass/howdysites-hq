@@ -1,0 +1,21 @@
+{
+  "status": "new",
+  "touches": [
+    {
+      "date": "2026-07-14",
+      "by": "sebastian",
+      "channel": "note",
+      "note": "mockup brief drafted"
+    }
+  ],
+  "client": null,
+  "business": "Triveni Supermarket",
+  "city": "houston",
+  "niche": "restaurants",
+  "gbp_url": "https://www.google.com/maps/place/Triveni+Supermarket/@29.745782,-95.8385122,17z/data=!3m1!4b1!4m6!3m5!1s0x86412354f9277d85:0xf3c9d02ba79cad10!8m2!3d29.745782!4d-95.8359373!16s%2Fg%2F11sswyd_jv?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D",
+  "assigned_to": "sebastian",
+  "contact_source": "google-business-profile",
+  "website": null,
+  "id": "houston-triveni-supermarket",
+  "created_at": "2026-07-14"
+}

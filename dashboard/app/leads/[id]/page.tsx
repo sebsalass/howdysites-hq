@@ -18,6 +18,7 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
   const [copied, setCopied] = useState(false);
   const [gbpInput, setGbpInput] = useState("");
   const [demoInput, setDemoInput] = useState("");
+  const [sendMsg, setSendMsg] = useState("");
 
   const load = () =>
     fetch(`/api/leads/${id}`)
@@ -70,6 +71,18 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ fields: { gbp_url: gbpInput.trim() || null, demo_url: demoInput.trim() || null } }),
     });
+    load();
+  }
+
+  async function sendNow(kind: "audit" | "mockup") {
+    setSendMsg("sending…");
+    const res = await fetch("/api/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ leadIds: [id], kind, by }),
+    });
+    const d = await res.json();
+    setSendMsg(res.ok ? (d.results[0].ok ? `sent to ${lead!.email}` : d.results[0].reason) : d.error);
     load();
   }
 
@@ -162,12 +175,23 @@ export default function LeadDetail({ params }: { params: Promise<{ id: string }>
               Draft mockup email
             </button>
           )}
+          {lead.email && (
+            <button className="btn" onClick={() => sendNow("audit")}>
+              Send intro email now
+            </button>
+          )}
+          {lead.email && lead.demo_url && (
+            <button className="btn" onClick={() => sendNow("mockup")}>
+              Send mockup email now
+            </button>
+          )}
           {lead.status !== "closed-won" && (
             <button className="btn btn-primary" onClick={markClient}>
               Mark closed-won
             </button>
           )}
           {copied && <span className="self-center text-xs text-emerald-400">copied to clipboard</span>}
+          {sendMsg && <span className="self-center text-xs text-sky-400">{sendMsg}</span>}
         </div>
 
         {draft && (

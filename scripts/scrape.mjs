@@ -32,11 +32,15 @@ if (!KEY) {
 }
 
 const args = process.argv.slice(2);
-const niche = args[0];
+let niches = [args[0]];
+if (args[0] === "all") {
+  const targets = JSON.parse(readFileSync(join(ROOT, "config/targets.json"), "utf8"));
+  niches = targets.niches.map((n) => n.label.split("/")[0].trim());
+}
 const zips = args.filter((a) => /^\d{5}$/.test(a));
 const city = (args.find((a) => a.startsWith("--city=")) || "").replace("--city=", "");
-if (!niche || zips.length === 0) {
-  console.error('usage: node scripts/scrape.mjs "<niche>" <zip> [zip...] [--city=houston]');
+if (!niches[0] || zips.length === 0) {
+  console.error('usage: node scripts/scrape.mjs "<niche>|all" <zip> [zip...] [--city=houston]');
   process.exit(1);
 }
 
@@ -45,7 +49,7 @@ const FIELDS = [
   "places.websiteUri", "places.rating", "places.userRatingCount", "places.googleMapsUri",
 ].join(",");
 
-async function searchZip(zip) {
+async function searchZip(zip, niche) {
   const results = [];
   let pageToken;
   do {
@@ -85,9 +89,11 @@ async function searchZip(zip) {
 
 const all = [];
 for (const zip of zips) {
-  const r = await searchZip(zip);
-  console.error(`zip ${zip}: ${r.length} businesses`);
-  all.push(...r);
+  for (const niche of niches) {
+    const r = await searchZip(zip, niche);
+    console.error(`zip ${zip} / ${niche}: ${r.length} businesses`);
+    all.push(...r);
+  }
 }
 
 // dedupe by name+address across overlapping zips

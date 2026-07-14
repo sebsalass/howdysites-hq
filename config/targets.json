@@ -89,5 +89,9 @@
     "demos_sent": 5,
     "closes": 2
   },
-  "phase": 0
+  "phase": 0,
+  "outreach": {
+    "$comment": "Daily cold-email cap per sending domain (deliverability). Raise slowly as the domain warms.",
+    "daily_email_cap": 25
+  }
 }

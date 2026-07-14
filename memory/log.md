@@ -41,3 +41,9 @@ Running log of who did what. Append at the end of every work session, newest fir
 
 - Built the ZIP territory system. data/zips-tx.json = all 2,600 Texas ZIP centroids (GeoNames, CC BY 4.0). Territories page now: type a ZIP (e.g. 77494) + niche → "Work this ZIP" runs scrape → audit → import in one click (needs GOOGLE_PLACES_API_KEY in .env; shows manual commands until then) → recommends the next 5 nearest unexplored ZIPs → SVG map per metro (Houston 352 zips / Dallas / San Antonio) colored by status: explorable, queued, scraped, contacted, clients won, exhausted. Click any dot to load that ZIP. Status derives from lead files automatically; queue/exhausted are manual marks in data/territories.json.
 - LAST BLOCKER for the full one-click machine: Google Places API key → .env.
+
+## 2026-07-13 — Sebastian (via Fable 5)
+
+- Removed the niche dropdown: "Work this ZIP" now sweeps ALL active niches from targets.json in one run (beats Google's 60-per-query cap too). The audit step now also harvests a contact email from each business's website (Places API never returns emails).
+- Built the email system: real sending via Resend (config in .env: RESEND_API_KEY, EMAIL_FROM, EMAIL_PHYSICAL_ADDRESS). Guards on every send: do-not-contact check, CAN-SPAM physical address required, daily cap (targets.json outreach.daily_email_cap = 25 until the domain warms). One-click "Send intro email to N hot leads" after working a ZIP; per-lead "Send intro/mockup email now" buttons on lead detail. Sends log touches automatically and flip status new -> contacted.
+- SETUP NEEDED before sends work: resend.com account + verify howdysites.com DNS at Cloudflare + fill .env. Physical address needs the LLC.

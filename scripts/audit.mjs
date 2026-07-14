@@ -100,12 +100,18 @@ async function auditWebsite(rawUrl) {
   checks.not_parked = !PARKED.test(html);
   if (!checks.not_parked) problems.push("parked-domain");
 
+  // harvest a contact email while we're here (Places API never returns one)
+  const emails = [...html.matchAll(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g)]
+    .map((m) => m[0].toLowerCase())
+    .filter((e) => !/\.(png|jpg|jpeg|gif|svg|webp|css|js)$/.test(e) && !/example\.|sentry|wixpress|godaddy/.test(e));
+  const found_email = emails[0] || "";
+
   const web_score =
     (checks.loads ? 30 : 0) + (checks.https ? 15 : 0) + (checks.mobile_viewport ? 15 : 0) +
     (checks.contact_action ? 10 : 0) + (checks.fast ? 10 : 0) + (checks.has_title ? 5 : 0) +
     (checks.has_description ? 5 : 0) + (checks.recent_copyright ? 5 : 0) + (checks.not_parked ? 5 : 0);
 
-  return { web_score, problems, checks };
+  return { web_score, problems, checks, found_email };
 }
 
 function parseCsv(text) {
@@ -143,7 +149,8 @@ async function worker(queue) {
   while (queue.length) {
     const row = queue.shift();
     const audit = await auditWebsite(row.website);
-    out.push({ ...row, ...audit });
+    const { found_email, ...rest } = audit;
+    out.push({ ...row, ...rest, email: row.email || found_email || "" });
     done++;
     process.stderr.write(`\raudited ${done}/${rows.length}  (${row.business ?? row.name ?? "?"}: ${audit.web_score})        `);
   }
